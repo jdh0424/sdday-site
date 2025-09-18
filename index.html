@@ -11,40 +11,44 @@
     <h1>D-Day 계산기</h1>
     <p class="today">오늘: <span id="today"></span></p>
 
+    <!-- 기본 기념일 -->
     <section>
       <h2>📌 기본 기념일</h2>
       <div class="days" id="default-days"></div>
     </section>
 
+    <!-- 사용자 기념일 -->
     <section>
       <h2>⭐ 나만의 기념일</h2>
       <button id="add-btn">추가하기</button>
       <div class="days" id="custom-days"></div>
     </section>
 
+    <!-- 배경 -->
     <section class="bg-section">
       <h2>🎨 배경</h2>
       <input type="file" id="bg-upload" accept="image/*">
       <button id="reset-bg">기본 배경으로</button>
     </section>
 
+    <!-- 로그인 -->
     <section class="auth-section">
       <h2>🔑 로그인</h2>
-      <button id="login-btn">Google 로그인</button>
-      <button id="logout-btn" style="display:none;">로그아웃</button>
-      <p id="user-info"></p>
+      <button id="loginBtn">구글로 로그인</button>
+      <button id="logoutBtn" style="display:none;">로그아웃</button>
+      <p id="userInfo"></p>
     </section>
   </div>
 
   <script src="script.js"></script>
 
-  <!-- ✅ Firebase SDK -->
+  <!-- Firebase SDK -->
   <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js"></script>
 
   <script>
-    // 네 Firebase 설정
+    // 네 Firebase 설정값 (Firebase 콘솔에서 복사한 거 넣기)
     const firebaseConfig = {
       apiKey: "AIzaSyC0J1fVQ7i6qr-iZ1_vsD5ZMzwF7LCX9c",
       authDomain: "dday-app-f8843.firebaseapp.com",
@@ -60,3 +64,4 @@
   </script>
 </body>
 </html>
+
