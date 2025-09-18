@@ -1,16 +1,38 @@
 body {
-  font-family: Arial, sans-serif;
+  font-family: '맑은 고딕', sans-serif;
   text-align: center;
-  background: #f0f0f0;
+  background-color: #f4f4f4;
+  margin: 0;
+  padding: 20px;
 }
-h1 { margin: 20px 0; }
-ul { list-style: none; padding: 0; }
-li { margin: 5px 0; }
-button {
-  margin: 10px;
-  padding: 10px 15px;
-  font-size: 14px;
+
+h1 {
+  font-size: 2em;
+  margin-bottom: 10px;
+}
+
+h2 {
+  margin-top: 20px;
+}
+
+.day-card {
+  background: white;
+  margin: 10px auto;
+  padding: 10px;
   border-radius: 8px;
-  border: none;
+  width: 250px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+button {
+  margin: 5px;
+  padding: 8px 12px;
+  border: 1px solid #aaa;
+  border-radius: 5px;
   cursor: pointer;
+  background: white;
+}
+
+button:hover {
+  background: #eee;
 }

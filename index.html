@@ -2,37 +2,23 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>D-Day 계산기</title>
-  <!-- CSS 연결 -->
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="container">
-    <h1>D-Day 계산기</h1>
-    <p class="today">오늘: <span id="today"></span></p>
+  <h1>D-Day 계산기</h1>
+  <p>오늘: <span id="today"></span></p>
 
-    <div class="row">
-      <!-- 기본 기념일 -->
-      <section class="left">
-        <h2>📌 기본 기념일</h2>
-        <div id="default-days" class="days"></div>
-      </section>
+  <h2>📌 기본 기념일</h2>
+  <div id="default-days"></div>
 
-      <!-- 사용자 기념일 -->
-      <section class="right">
-        <h2>⭐ 나만의 기념일</h2>
-        <button id="add-btn">추가하기</button>
-        <div id="custom-days" class="days"></div>
-      </section>
-    </div>
+  <h2>⭐ 나만의 기념일</h2>
+  <button id="add-btn">추가하기</button>
+  <div id="custom-days"></div>
 
-    <section class="bg-section">
-      <h2>🎨 배경</h2>
-      <input type="file" id="bg-upload" accept="image/*">
-      <button id="reset-bg">기본 배경으로</button>
-    </section>
-  </div>
+  <h2>🎨 배경</h2>
+  <input type="file" id="bg-upload" accept="image/*">
+  <button id="reset-bg">기본 배경으로</button>
 
   <!-- JS 연결 -->
   <script src="script.js"></script>

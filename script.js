@@ -1,79 +1,76 @@
+// 오늘 날짜 표시
+const todayEl = document.getElementById("today");
+const today = new Date();
+todayEl.textContent = today.toLocaleDateString();
+
+// 기본 기념일
 const defaultEvents = [
-  { title: "크리스마스", date: "12-25" },
-  { title: "빼빼로데이", date: "11-11" },
-  { title: "신정", date: "01-01" }
+  { name: "새해", date: "2026-01-01" },
+  { name: "밸런타인데이", date: "2026-02-14" },
+  { name: "화이트데이", date: "2026-03-14" },
+  { name: "어린이날", date: "2026-05-05" },
+  { name: "한글날", date: "2025-10-09" },
+  { name: "크리스마스", date: "2025-12-25" },
+  { name: "빼빼로데이", date: "2025-11-11" }
 ];
 
-function calcDday(targetDate) {
+function calcDday(eventDate) {
   const today = new Date();
-  const year = today.getFullYear();
-  let eventDate = new Date(`${year}-${targetDate}`);
-  if (eventDate < today) eventDate = new Date(`${year + 1}-${targetDate}`);
-  const diff = Math.ceil((eventDate - today) / (1000 * 60 * 60 * 24));
-  return diff === 0 ? "오늘!" : `D-${diff}`;
+  const dday = new Date(eventDate);
+  const diff = Math.floor((dday - today) / (1000 * 60 * 60 * 24));
+  if (diff > 0) return `D-${diff}`;
+  else if (diff === 0) return "D-Day 🎉";
+  else return `+${Math.abs(diff)}일`;
 }
 
-function renderDefaultDays() {
-  const list = document.getElementById("defaultList");
-  list.innerHTML = "";
-  defaultEvents.forEach(ev => {
-    const li = document.createElement("li");
-    li.textContent = `${ev.title}: ${calcDday(ev.date)}`;
-    list.appendChild(li);
+function renderEvents(list, containerId) {
+  const container = document.getElementById(containerId);
+  container.innerHTML = "";
+  list.forEach(ev => {
+    const div = document.createElement("div");
+    div.className = "day-card";
+    div.innerHTML = `<h3>${ev.name}</h3><p>${calcDday(ev.date)}</p>`;
+    container.appendChild(div);
   });
 }
 
-function saveCustomDays(days) {
-  localStorage.setItem("customDays", JSON.stringify(days));
-}
-function loadCustomDays() {
-  return JSON.parse(localStorage.getItem("customDays")) || [];
-}
+// 기본 기념일 표시
+renderEvents(defaultEvents, "default-days");
 
-function renderCustomDays() {
-  const list = document.getElementById("customList");
-  const days = loadCustomDays();
-  list.innerHTML = "";
-  days.forEach(ev => {
-    const li = document.createElement("li");
-    li.textContent = `${ev.title}: ${calcDday(ev.date)}`;
-    list.appendChild(li);
-  });
-}
+// 사용자 기념일 저장 (localStorage)
+const customEvents = JSON.parse(localStorage.getItem("customEvents")) || [];
+renderEvents(customEvents, "custom-days");
 
-document.getElementById("addDayBtn").addEventListener("click", () => {
-  const today = new Date();
-  const date = `${String(today.getMonth() + 1).padStart(2, "0")}-${String(today.getDate()).padStart(2, "0")}`;
-  const title = `내 기념일 ${loadCustomDays().length + 1}`;
-  const days = loadCustomDays();
-  days.push({ title, date });
-  saveCustomDays(days);
-  renderCustomDays();
+document.getElementById("add-btn").addEventListener("click", () => {
+  const name = prompt("기념일 이름을 입력하세요:");
+  const date = prompt("날짜를 YYYY-MM-DD 형식으로 입력하세요:");
+  if (name && date) {
+    customEvents.push({ name, date });
+    localStorage.setItem("customEvents", JSON.stringify(customEvents));
+    renderEvents(customEvents, "custom-days");
+  }
 });
 
-document.getElementById("bgUpload").addEventListener("change", e => {
+// 배경 업로드
+const bgUpload = document.getElementById("bg-upload");
+const resetBg = document.getElementById("reset-bg");
+
+if (localStorage.getItem("background")) {
+  document.body.style.backgroundImage = `url(${localStorage.getItem("background")})`;
+}
+
+bgUpload.addEventListener("change", (e) => {
   const file = e.target.files[0];
-  if (!file) return;
   const reader = new FileReader();
-  reader.onload = () => {
-    document.body.style.backgroundImage = `url(${reader.result})`;
-    document.body.style.backgroundSize = "cover";
-    localStorage.setItem("bgImage", reader.result);
+  reader.onload = function(evt) {
+    const imgData = evt.target.result;
+    document.body.style.backgroundImage = `url(${imgData})`;
+    localStorage.setItem("background", imgData);
   };
   reader.readAsDataURL(file);
 });
 
-document.getElementById("resetBg").addEventListener("click", () => {
+resetBg.addEventListener("click", () => {
   document.body.style.backgroundImage = "";
-  localStorage.removeItem("bgImage");
-});
-
-window.addEventListener("load", () => {
-  const bg = localStorage.getItem("bgImage");
-  if (bg) {
-    document.body.style.backgroundImage = `url(${bg})`;
-    document.body.style.backgroundSize = "cover";
-  }
-  renderDefaultDays();
-  renderCustomDays();
+  localStorage.removeItem("background");
 });
