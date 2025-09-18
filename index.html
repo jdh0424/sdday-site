@@ -6,21 +6,31 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <h1>D-Day 계산기</h1>
-  <p>오늘: <span id="today"></span></p>
+  <div class="container">
+    <h1>D-Day 계산기</h1>
+    <p class="today">오늘: <span id="today"></span></p>
 
-  <h2>📌 기본 기념일</h2>
-  <div id="default-days"></div>
+    <!-- 기본 기념일 -->
+    <section>
+      <h2>📌 기본 기념일</h2>
+      <div id="default-days" class="days"></div>
+    </section>
 
-  <h2>⭐ 나만의 기념일</h2>
-  <button id="add-btn">추가하기</button>
-  <div id="custom-days"></div>
+    <!-- 나만의 기념일 -->
+    <section>
+      <h2>⭐ 나만의 기념일</h2>
+      <button id="addBtn">추가하기</button>
+      <div id="custom-days" class="days"></div>
+    </section>
 
-  <h2>🎨 배경</h2>
-  <input type="file" id="bg-upload" accept="image/*">
-  <button id="reset-bg">기본 배경으로</button>
+    <!-- 배경 -->
+    <section class="bg-section">
+      <h2>🎨 배경</h2>
+      <input type="file" id="bgUpload" accept="image/*">
+      <button id="resetBg">기본 배경으로</button>
+    </section>
+  </div>
 
-  <!-- JS 연결 -->
   <script src="script.js"></script>
 </body>
 </html>

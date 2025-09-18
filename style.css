@@ -1,38 +1,47 @@
 body {
-  font-family: '맑은 고딕', sans-serif;
+  font-family: "맑은 고딕", sans-serif;
   text-align: center;
-  background-color: #f4f4f4;
+  background-color: #f5f5f5;
   margin: 0;
+  padding: 0;
+}
+
+.container {
+  max-width: 600px;
+  margin: auto;
   padding: 20px;
 }
 
 h1 {
-  font-size: 2em;
   margin-bottom: 10px;
 }
 
+.today {
+  margin-bottom: 20px;
+  font-size: 14px;
+  color: #444;
+}
+
+section {
+  margin-bottom: 30px;
+}
+
 h2 {
-  margin-top: 20px;
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.days {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .day-card {
   background: white;
-  margin: 10px auto;
+  margin: 6px 0;
   padding: 10px;
+  width: 90%;
   border-radius: 8px;
-  width: 250px;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-}
-
-button {
-  margin: 5px;
-  padding: 8px 12px;
-  border: 1px solid #aaa;
-  border-radius: 5px;
-  cursor: pointer;
-  background: white;
-}
-
-button:hover {
-  background: #eee;
+  box-shadow: 0px 2px 6px rgba(0,0,0,0.1);
 }
