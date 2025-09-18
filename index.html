@@ -2,6 +2,7 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>D-Day 계산기</title>
   <link rel="stylesheet" href="style.css">
 </head>
@@ -10,27 +11,52 @@
     <h1>D-Day 계산기</h1>
     <p class="today">오늘: <span id="today"></span></p>
 
-    <!-- 기본 기념일 -->
     <section>
       <h2>📌 기본 기념일</h2>
-      <div id="default-days" class="days"></div>
+      <div class="days" id="default-days"></div>
     </section>
 
-    <!-- 나만의 기념일 -->
     <section>
       <h2>⭐ 나만의 기념일</h2>
-      <button id="addBtn">추가하기</button>
-      <div id="custom-days" class="days"></div>
+      <button id="add-btn">추가하기</button>
+      <div class="days" id="custom-days"></div>
     </section>
 
-    <!-- 배경 -->
     <section class="bg-section">
       <h2>🎨 배경</h2>
-      <input type="file" id="bgUpload" accept="image/*">
-      <button id="resetBg">기본 배경으로</button>
+      <input type="file" id="bg-upload" accept="image/*">
+      <button id="reset-bg">기본 배경으로</button>
+    </section>
+
+    <section class="auth-section">
+      <h2>🔑 로그인</h2>
+      <button id="login-btn">Google 로그인</button>
+      <button id="logout-btn" style="display:none;">로그아웃</button>
+      <p id="user-info"></p>
     </section>
   </div>
 
   <script src="script.js"></script>
+
+  <!-- ✅ Firebase SDK -->
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js"></script>
+
+  <script>
+    // 네 Firebase 설정
+    const firebaseConfig = {
+      apiKey: "AIzaSyC0J1fVQ7i6qr-iZ1_vsD5ZMzwF7LCX9c",
+      authDomain: "dday-app-f8843.firebaseapp.com",
+      projectId: "dday-app-f8843",
+      storageBucket: "dday-app-f8843.appspot.com",
+      messagingSenderId: "229542208577",
+      appId: "1:229542208577:web:299f649e06af6caa4192c0",
+      measurementId: "G-FC14W3NMCR"
+    };
+
+    // Firebase 초기화
+    firebase.initializeApp(firebaseConfig);
+  </script>
 </body>
 </html>
